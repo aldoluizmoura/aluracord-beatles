@@ -1,5 +1,7 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import appConfig from '../config.json'
+import React from 'react';
+import { useRouter } from 'next/router'
 
 function GlobalStyle() {
     return (
@@ -47,8 +49,9 @@ function Titulo(props) {
 }
 
 export default function PaginaInicial() {
-    const username = 'aldoluizmoura';
-
+    // const username = 'aldoluizmoura';
+     const [username, setUsername] = React.useState('aldoluizmoura')
+     const roteamento = useRouter();
     return (
         <>
             <GlobalStyle />
@@ -78,6 +81,10 @@ export default function PaginaInicial() {
                     {/* Formulário */}
                     <Box
                         as="form"
+                        onSubmit={(function(infosDoEvento){
+                            infosDoEvento.preventDefault();
+                            roteamento.push('/chat'); 
+                        })}
                         styleSheet={{
                             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                             width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -88,6 +95,7 @@ export default function PaginaInicial() {
                             {appConfig.name}
                         </Text>
 
+
                         <TextField
                             fullWidth
                             textFieldColors={{
@@ -97,6 +105,11 @@ export default function PaginaInicial() {
                                     mainColorHighlight: appConfig.theme.colors.primary[500],
                                     backgroundColor: appConfig.theme.colors.neutrals[800],
                                 },
+                            }}
+                            value={username}
+                            onChange={function (event){
+                                const valor = event.target.value;
+                                setUsername(valor);
                             }}
                         />
                         <Button
