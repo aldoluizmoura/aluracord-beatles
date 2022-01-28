@@ -3,34 +3,7 @@ import appConfig from '../config.json'
 import React from 'react';
 import { useRouter } from 'next/router'
 
-function GlobalStyle() {
-    return (
-      <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */ 
-      html, body, #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */ 
-    `}</style>
-    );
-  }
+
 
 function Titulo(props) {
     const TAG = props.tag || 'h1';
@@ -53,12 +26,10 @@ export default function PaginaInicial() {
      const [username, setUsername] = React.useState('aldoluizmoura')
      const roteamento = useRouter();
     return (
-        <>
-            <GlobalStyle />
+        <>           
             <Box
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    //backgroundColor: appConfig.theme.colors.primary[500],
                     backgroundImage: 'url(https://igormiranda.com.br/wp-content/uploads/2021/10/beatles-1969-fim-dos-beatles.jpg)',
                     backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 }}
